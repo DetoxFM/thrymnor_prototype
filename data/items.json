@@ -1,0 +1,7 @@
+[
+  { "name": "Iron Sword", "rarity": "common", "effect": "+2 Swordsmanship (equipped)" },
+  { "name": "Steel Breastplate", "rarity": "uncommon", "effect": "+2 Defense (equipped)" },
+  { "name": "Bow of Cindrel", "rarity": "rare", "effect": "+3 Archery (equipped)" },
+  { "name": "Wither’s End", "rarity": "epic", "effect": "+4 Swordsmanship; +1 Order per victory" },
+  { "name": "Crown of Shattered Kings", "rarity": "legendary", "effect": "+2 Leadership; unlocks faction lines" }
+]
