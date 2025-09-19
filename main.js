@@ -293,7 +293,7 @@ async function loadData() {
     renderInventory();
   }
 
-  // Boot
+// Boot
 (async () => {
   load();          // load from localStorage if available
   await loadData();// load quests + items from JSON
