@@ -31,51 +31,21 @@
     "Frostspire Peaks": "Snowbound shrines and beasts. High risk, high reward."
   };
 
-  const STARTER_QUESTS = [
-    {
-      id: "farmer_plea",
-      title: "The Farmer’s Plea",
-      desc: "Defend the farm from raiders, negotiate, or join the raid.",
-      status: "Available",
-      choices: [
-        { label: "Defend the farm (Fight)", effects: { order:+10, mercy:+5, loot:"uncommon"}, result:"Farm saved. Farmers will trade cheaper." },
-        { label: "Negotiate a tithe (Talk)", effects: { order:+5, mercy:+10, loot:"common"}, result:"A fragile peace and small weekly grain tithe." },
-        { label: "Join the raid (Betray)", effects: { order:-15, mercy:-15, loot:"rare"}, result:"Farm burned. Raiders welcome you." }
-      ]
-    },
-    {
-      id: "old_grove",
-      title: "Trial of the Old Gods",
-      desc: "Purify, defile, or ignore the sacred grove.",
-      status: "Available",
-      choices: [
-        { label: "Purify the grove", effects: { order:+10, mercy:+10, loot:"rare"}, result:"Blessed grove. Nature favors you." },
-        { label: "Defile for power", effects: { order:-10, mercy:-10, loot:"epic"}, result:"Corrupted boon. Dark paths open." },
-        { label: "Walk away", effects: { order:0, mercy:0 }, result:"Nothing changes… for now." }
-      ]
-    }
-  ];
+  let ITEM_POOL = []; // now loaded from items.json
 
-  const ITEM_POOL = [
-    // Common
-    { name:"Iron Sword", rarity:"common", effect:"+2 Swordsmanship (equipped)" },
-    { name:"Hunter’s Knife", rarity:"common", effect:"+1 Hunting" },
-    { name:"Stale Ration", rarity:"common", effect:"Heals 5 HP" },
-    { name:"Marsh Reed", rarity:"common", effect:"Herbalism +1 (crafting)" },
-    // Uncommon
-    { name:"Steel Breastplate", rarity:"uncommon", effect:"+2 Defense (equipped)" },
-    { name:"Stamina Brew", rarity:"uncommon", effect:"Restore 25 Stamina" },
-    { name:"Refined Ore", rarity:"uncommon", effect:"+10% Blacksmithing XP (craft)" },
-    // Rare
-    { name:"Bow of Cindrel", rarity:"rare", effect:"+3 Archery (equipped)" },
-    { name:"Groveheart Tonic", rarity:"rare", effect:"+1 Mercy for 1 quest" },
-    { name:"Velmor Signet", rarity:"rare", effect:"+2 Persuasion with nobles" },
-    // Epic
-    { name:"Wither’s End", rarity:"epic", effect:"+4 Swordsmanship; +1 Order per victory" },
-    { name:"Shadowmantle", rarity:"epic", effect:"+3 Stealth; night checks easier" },
-    // Legendary
-    { name:"Crown of Shattered Kings", rarity:"legendary", effect:"+2 Leadership; unlocks faction lines" }
-  ];
+async function loadData() {
+  try {
+    const questsRes = await fetch("data/quests.json");
+    const itemsRes = await fetch("data/items.json");
+
+    State.quests = await questsRes.json();
+    ITEM_POOL = await itemsRes.json();
+  } catch (err) {
+    console.error("Failed to load data:", err);
+  }
+}
+
+  
 
   // Populate initial state
   State.quests = STARTER_QUESTS;
@@ -324,6 +294,8 @@
   }
 
   // Boot
-  load();
-  renderAll();
+(async () => {
+  load();          // load from localStorage if available
+  await loadData();// load quests + items from JSON
+  renderAll();     // draw UI
 })();
