@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thrymnor Prototype</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1>Thrymnor: Actions & Consequences (Prototype)</h1>
+      <div class="header-right">
+        <button id="saveBtn" title="Save to browser">Save</button>
+        <button id="loadBtn" title="Load from browser">Load</button>
+        <button id="resetBtn" class="danger" title="Hard reset">Reset</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel world">
+        <h2>World Map</h2>
+        <div class="map">
+          <button class="node" data-loc="Velmor Highlands">Velmor Highlands</button>
+          <button class="node" data-loc="Cindrel Port">Cindrel Port</button>
+          <button class="node" data-loc="Drowned Marshes">Drowned Marshes</button>
+          <button class="node" data-loc="Ashen Wastes">Ashen Wastes</button>
+          <button class="node" data-loc="Frostspire Peaks">Frostspire Peaks</button>
+        </div>
+        <div class="loc-desc" id="locDesc">Choose a location.</div>
+      </section>
+
+      <section class="panel actions">
+        <h2>Actions</h2>
+        <div id="actionsBar" class="actions-bar">
+          <!-- dynamic -->
+        </div>
+        <div class="skills">
+          <h3>Skills</h3>
+          <ul id="skillsList"></ul>
+        </div>
+        <div class="morality">
+          <h3>Reputation</h3>
+          <div class="meter"><span>Order</span><div class="bar"><div id="orderBar"></div></div></div>
+          <div class="meter"><span>Mercy</span><div class="bar"><div id="mercyBar"></div></div></div>
+        </div>
+      </section>
+
+      <section class="panel quests">
+        <h2>Quest Log</h2>
+        <div id="quests"></div>
+      </section>
+
+      <section class="panel inventory">
+        <h2>Inventory</h2>
+        <div id="inventory"></div>
+        <h3>Loot</h3>
+        <div class="loot-controls">
+          <button id="lootCommon">Loot (Common)</button>
+          <button id="lootRare">Loot (Rare+)</button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <small>Local-only demo. Data saves to your browser (localStorage). © Personal Use</small>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
