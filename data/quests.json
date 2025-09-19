@@ -1,0 +1,13 @@
+[
+  {
+    "id": "farmer_plea",
+    "title": "The Farmer’s Plea",
+    "desc": "Defend the farm from raiders, negotiate, or join the raid.",
+    "status": "Available",
+    "choices": [
+      { "label": "Defend the farm (Fight)", "effects": {"order":10, "mercy":5, "loot":"uncommon"}, "result":"Farm saved. Farmers will trade cheaper." },
+      { "label": "Negotiate a tithe (Talk)", "effects": {"order":5, "mercy":10, "loot":"common"}, "result":"A fragile peace and small weekly grain tithe." },
+      { "label": "Join the raid (Betray)", "effects": {"order":-15, "mercy":-15, "loot":"rare"}, "result":"Farm burned. Raiders welcome you." }
+    ]
+  }
+]
